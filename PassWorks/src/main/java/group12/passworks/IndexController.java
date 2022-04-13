@@ -21,11 +21,12 @@ public class IndexController {
     /* This is the route for when the user first enters the app */
     @GetMapping("/")
     public String index(Model model) {
+
         return "index";
     }
 
     @GetMapping("/generate")
-    public String six(Model model) {
+    public String generate(Model model) {
         String password = getNumber();
         model.addAttribute("password",password);
         return "index";
@@ -35,7 +36,6 @@ public class IndexController {
 
     public String getNumber() {
         String password = RandomString.generatePassword(12);
-
         return password;
     }
 

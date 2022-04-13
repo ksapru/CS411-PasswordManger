@@ -23,8 +23,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/index.html").permitAll();
-        http.authorizeRequests().antMatchers("/generate.html").permitAll();
-        http.authorizeRequests().antMatchers("/number.html").permitAll();
     }
 
 
