@@ -32,6 +32,13 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/test")
+    public String test(Model model) {
+        String table = getTable();
+        model.addAttribute("table",table);
+        return "index";
+    }
+
 
 
     public String getNumber() {
