@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Sign Up - CodeJava</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+    <form class="form-signing" th:action="@{/process_register}" th:object="${user}" method="post" >
+        <div>
+            <h2 class="form-signin-heading">User Registration - Sign Up</h2>
+        </div>
+        <div class="form-group row">
+            <label for="email" class="sr-only">E-mail</label>
+            <input id="email" type="text" th:field="*{email}" class="form-control" placeholder="Email" required />
+        </div>
+
+        <div class="form-group row">
+            <label class="sr-only">Password</label>
+            <input type="password" th:field="*{password}" class="form-control" placeholder="Password" required minlength="6" maxlength="10"/>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
