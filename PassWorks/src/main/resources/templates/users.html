@@ -39,6 +39,9 @@
 
     <h5> Passwords </h5>
         <div id="Passwords">
+          <tr th:each="password: ${listPasswords}">
+            <td th:text="${password.getValue()}">Value</td>
+          </tr>
         </div>
 
 

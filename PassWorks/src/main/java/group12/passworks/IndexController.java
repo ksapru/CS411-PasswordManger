@@ -90,8 +90,10 @@ public class IndexController {
     @GetMapping("/users")
     public String listUsers(Model model) {
         List<User> listUsers = userRepo.findAll();
+        List<Password> listPasswords = passRepo.findAll();
+        listPasswords.removeIf(p -> p.getId() != getLoggedInUser().getId());
         model.addAttribute("listUsers", listUsers);
-
+        model.addAttribute("listPasswords", listPasswords);
 
         return "users";
     }

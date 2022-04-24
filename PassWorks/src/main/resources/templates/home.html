@@ -20,7 +20,7 @@
     <h3>Password:</h3>
 
     <form class="form-signing" th:action="@{/save}"  method="post">
-        <input readonly th:value="${GeneratedPassword}" type="text" name="password"/>
+        <input th:value="${GeneratedPassword}" type="text" name="password" placeholder="Password to Save"/>
         <br>
         <br>
         <button type="submit">Save</button>
