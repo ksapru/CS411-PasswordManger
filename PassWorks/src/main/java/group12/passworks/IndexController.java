@@ -28,8 +28,9 @@ public class IndexController {
 
     @GetMapping("/generate")
     public String generate(Model model) {
-        String password = getNumber();
-        model.addAttribute("password",password);
+        String password = getRandomPassword();
+        model.addAttribute("GeneratedPassword",password);
+        model.addAttribute("password",new Password());
         return "home";
     }
 
@@ -40,12 +41,25 @@ public class IndexController {
 //        return "index";
 //    }
 
-
-
-    public String getNumber() {
+    public String getRandomPassword() {
         String password = RandomString.generatePassword(12);
         return password;
     }
+
+    @Autowired
+    private PasswordRepository passRepo;
+
+    @PostMapping("/save")
+    public String save(@RequestParam(name="password") String password) {
+        Password newPassword = new Password();
+        newPassword.setId(getLoggedInUser().getId());
+        newPassword.setValue(password);
+        System.out.println("new password is " + password);
+        passRepo.save(newPassword);
+
+        return "home";
+    }
+
 
 
     @Autowired
@@ -84,6 +98,8 @@ public class IndexController {
 
     @GetMapping("/home")
     public String home(Model model) {
+        model.addAttribute("GeneratedPassword","");
+        model.addAttribute("password", new Password());
         return "home";
     }
 
