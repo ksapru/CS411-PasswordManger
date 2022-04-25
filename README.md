@@ -28,9 +28,6 @@ This project uses a number of technologies to build a place for users to store p
 
  <img width="1440" alt="Screen Shot 2022-04-25 at 1 17 10 AM" src="https://user-images.githubusercontent.com/67235656/165025017-a95b0c05-e041-4a9d-bab3-49496af96a50.png">
 
-
-[Back To The Top](#Portfolio)
-
 ---
 
 
