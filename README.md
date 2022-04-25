@@ -12,7 +12,7 @@
 
 ## Description
 
-When you move to Vancouver, most of the information is qualitative rather than quantitative. To fix this problem, users can use our web app to know the ideal place to live based on their criteria.
+This project uses a number of technologies to build a place for users to store passwords and perform CRUD operations on the stored passwords in the database. It also has an additional feature for security that allows it to encrypt/decrypt passwords. 
 
 #### Technologies
 
