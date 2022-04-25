@@ -1,6 +1,7 @@
 package group12.passworks;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,7 @@ public class IndexController {
     public String index(Model model) {
         return "index";
     }
+
 
     @GetMapping("/generate")
     public String generate(Model model) {
@@ -52,14 +54,13 @@ public class IndexController {
     @PostMapping("/save")
     public String save(@RequestParam(name="password") String password) {
         Password newPassword = new Password();
-        newPassword.setId(getLoggedInUser().getId());
+        newPassword.setAssociatedUserId(getLoggedInUser().getId());
         newPassword.setValue(password);
         System.out.println("new password is " + password);
         passRepo.save(newPassword);
 
         return "home";
     }
-
 
 
     @Autowired
@@ -89,10 +90,9 @@ public class IndexController {
     // Shows the list of users, was part of the tutorial I used
     @GetMapping("/users")
     public String listUsers(Model model) {
-        List<User> listUsers = userRepo.findAll();
         List<Password> listPasswords = passRepo.findAll();
-        listPasswords.removeIf(p -> p.getId() != getLoggedInUser().getId());
-        model.addAttribute("listUsers", listUsers);
+        listPasswords.removeIf(p -> p.getAssociatedUserId() != getLoggedInUser().getId());
+        model.addAttribute("user", getLoggedInUser());
         model.addAttribute("listPasswords", listPasswords);
 
         return "users";
@@ -104,6 +104,7 @@ public class IndexController {
         model.addAttribute("password", new Password());
         return "home";
     }
+
 
 
     public User getLoggedInUser() {

@@ -13,8 +13,11 @@ public class Password {
 
 
     @Id
-    @Column(nullable = false, length = 64)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, length = 64)
+    private Long associatedUserId;
 
     @Column(nullable = false, length = 64)
     private String value;
@@ -27,6 +30,14 @@ public class Password {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public void setAssociatedUserId(Long associatedUserId) {
+        this.associatedUserId = associatedUserId;
+    }
+
+    public Long getAssociatedUserId() {
+        return associatedUserId;
     }
 
     public void setId(Long id) {
