@@ -23,13 +23,16 @@
     </p>
 
     <form class="form-inline" th:action="@{/save}"  method="post">
+        <div>
+            <input class="form-control" type="text" name="username" placeholder="Username to Save" required minlength="1"/>
+        </div>
+        <br>
         <div class="input-group mb-3">
-            <input class="form-control" th:value="${GeneratedPassword}" type="text" name="password" placeholder="Password to Save"/>
+            <input class="form-control" th:value="${GeneratedPassword}" type="text" name="password" placeholder="Password to Save" required minlength="1"/>
             <div class="input-group-append">
                 <button class="btn btn-outline-primary" type="button" onclick="window.location.href='/generate'">Generate</button>
             </div>
         </div>
-
         <br>
         <button class="btn btn-outline-primary" type="submit">Save</button>
     </form>

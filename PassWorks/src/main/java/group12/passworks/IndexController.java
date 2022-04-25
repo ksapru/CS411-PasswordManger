@@ -51,10 +51,11 @@ public class IndexController {
     private PasswordRepository passRepo;
 
     @PostMapping("/save")
-    public String save(@RequestParam(name="password") String password) {
+    public String save(@RequestParam(name="username") String username,@RequestParam(name="password") String password) {
         Password newPassword = new Password();
         newPassword.setAssociatedUserId(getLoggedInUser().getId());
         newPassword.setValue(password);
+        newPassword.setUsername(username);
         System.out.println("new password is " + password);
         passRepo.save(newPassword);
 

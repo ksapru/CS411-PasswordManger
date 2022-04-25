@@ -17,6 +17,9 @@ public class Password {
     private Long id;
 
     @Column(nullable = false, length = 64)
+    private String username;
+
+    @Column(nullable = false, length = 64)
     private Long associatedUserId;
 
     @Column(nullable = false, length = 64)
@@ -30,6 +33,14 @@ public class Password {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 
     public void setAssociatedUserId(Long associatedUserId) {
