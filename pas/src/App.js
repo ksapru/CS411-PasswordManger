@@ -26,9 +26,6 @@ export default function App() {
 
   };
 
-
- 
- 
   const invalid = (item, v_icon, inv_icon) => {
     let text = document.querySelector(`#${item}`);
     text.style.opacity = ".5";
@@ -47,9 +44,7 @@ export default function App() {
   const handleInputChange = e => {
     const password = e.target.value;
 
-    
-
-    if (password.match(/[A-z]/) != null) {
+    if (password.match(/[A-Z]/) != null) {
       valid("test", "fa-check");
     }
 
@@ -57,12 +52,12 @@ export default function App() {
       invalid("test", "fa-check" );
     }
 
-    if (password.match(/[A-z]/) != null) {
-      valid("number", "fa-check", "fa-times");
+    if (password.match(/[0-9]/) != null) {
+      valid("num", "fa-check");
     }
 
     else {
-      invalid("number", "fa-check", "fa-times");
+      invalid("num", "fa-check");
     }
 
     if(password.match(/[!@#$%^&*]/) != null) {
@@ -99,23 +94,23 @@ export default function App() {
 
         <i onClick={showHide}></i>
         <p id="test">
-          <FontAwesomeIcon className='fa-times icon' icon={faTimes} id="show_hide" onclick={showHide} />
-          <FontAwesomeIcon className='fa-check icon' icon={faCheck} id="show_hide" onclick={showHide} />
+          <FontAwesomeIcon onclick={handleShowhide} className='fa-times icon' icon={faTimes} id="show_hide"  />
+          <FontAwesomeIcon onclick={handleShowhide} className='fa-check icon' icon={faCheck} id="show_hide"   />
           <span>Captial Letters</span>
         </p>
-        <p id="number">
-          <FontAwesomeIcon className='fa-times icon' icon={faTimes} id="show_hide" onclick={showHide} />
-          <FontAwesomeIcon className='fa-check icon' icon={faCheck} id="show_hide" onclick={showHide} />
+        <p id="num">
+          <FontAwesomeIcon onclick={handleShowhide} className='fa-times icon' icon={faTimes} id="show_hide"   />
+          <FontAwesomeIcon onclick={handleShowhide} className='fa-check icon' icon={faCheck} id="show_hide"  />
           <span>Use Numbers</span>
         </p>
         <p id="char">
-        <FontAwesomeIcon className='fa-times icon' icon={faTimes} id="show_hide" onclick={showHide} />
-          <FontAwesomeIcon className='fa-check icon' icon={faCheck} id="show_hide" onclick={showHide} />
+        <FontAwesomeIcon onclick={handleShowhide} className='fa-times icon' icon={faTimes} id="show_hide"  />
+          <FontAwesomeIcon onclick={handleShowhide} className='fa-check icon' icon={faCheck} id="show_hide"  />
           <span>Special Characters</span>
         </p>
         <p id="etc">
-        <FontAwesomeIcon className='fa-times icon' icon={faTimes} id="show_hide" onclick={showHide} />
-          <FontAwesomeIcon className='fa-check icon' icon={faCheck} id="show_hide" onclick={showHide} />
+        <FontAwesomeIcon onclick={handleShowhide} className='fa-times icon' icon={faTimes} id="show_hide"  />
+          <FontAwesomeIcon onclick={handleShowhide} className='fa-check icon' icon={faCheck} id="show_hide"   />
           <span>8+ Characters</span>
         </p>
         </div>
