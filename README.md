@@ -1,5 +1,5 @@
 # CS411-PasswordManger
-![Project Image](./client/public/images/passworks.png)
+![passworks](https://user-images.githubusercontent.com/67235656/165024876-e7823501-42b9-4e86-a414-52a537e93091.png)
 
 ### Table of Contents
 
