@@ -50,7 +50,7 @@ public class IndexController {
     @Autowired
     private PasswordRepository passRepo;
 
-    @PostMapping("/save")
+    @PostMapping("/home")
     public String save(@RequestParam(name="username") String username,@RequestParam(name="password") String password) {
         Password newPassword = new Password();
         newPassword.setAssociatedUserId(getLoggedInUser().getId());
@@ -61,7 +61,6 @@ public class IndexController {
 
         return "home";
     }
-
 
     @Autowired
     private UserRepository userRepo;
@@ -87,13 +86,20 @@ public class IndexController {
         return "index";
     }
 
-    // Shows the list of users, was part of the tutorial I used
+    //
     @GetMapping("/account")
     public String listUsers(Model model) {
         List<Password> listPasswords = passRepo.findAll();
         listPasswords.removeIf(p -> p.getAssociatedUserId() != getLoggedInUser().getId());
         model.addAttribute("user", getLoggedInUser());
         model.addAttribute("listPasswords", listPasswords);
+
+        return "account";
+    }
+
+    @PostMapping("/account")
+    public String alterPasswordRepo(@RequestParam(name="passwordId") Long id) {
+        passRepo.deleteById(id);
 
         return "account";
     }
