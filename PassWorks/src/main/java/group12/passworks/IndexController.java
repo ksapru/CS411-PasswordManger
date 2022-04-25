@@ -1,7 +1,6 @@
 package group12.passworks;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -88,14 +87,14 @@ public class IndexController {
     }
 
     // Shows the list of users, was part of the tutorial I used
-    @GetMapping("/users")
+    @GetMapping("/account")
     public String listUsers(Model model) {
         List<Password> listPasswords = passRepo.findAll();
         listPasswords.removeIf(p -> p.getAssociatedUserId() != getLoggedInUser().getId());
         model.addAttribute("user", getLoggedInUser());
         model.addAttribute("listPasswords", listPasswords);
 
-        return "users";
+        return "account";
     }
 
     @GetMapping("/home")
@@ -123,11 +122,7 @@ public class IndexController {
 
         return loggedInUser;
     }
-    @GetMapping("/account")
-    public String getAccountInfo(Model model) {
-        model.addAttribute("user",getLoggedInUser());
-        return "account";
-    }
+
     @GetMapping("/edit_account")
     public String editAccountView(Model model) {
         return "edit_account";
