@@ -8,6 +8,9 @@ import { CgPassword } from "react-icons/cg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTimes, faCheck, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import React, { useState, showHide } from "react";
+import { Button } from 'react-bootstrap';
+
+
 
 
 export default function App() {
@@ -76,13 +79,27 @@ export default function App() {
 
 
   };
+
+  function makeid(length) {
+    var no = Math.random().toString(36).slice(-8); 
+    console.log(Math.random().toString(36).slice(-8));
+    
+  }
+
   
 
  
 
   return (
     <div className="App">
+      <div className="cont1">
+        <input type="text" name = "" placeholder='Create Password' readonly=''></input>
+        <br/>
+        <Button onClick={()=>makeid()}> Generate Password</Button>
+        </div>
+ 
       <div className="container">
+        
          
       <CgPassword size="50px"/>
         <input 
