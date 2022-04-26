@@ -97,11 +97,11 @@ public class IndexController {
         return "account";
     }
 
-    @PostMapping("/account")
-    public String alterPasswordRepo(@RequestParam(name="passwordId") Long id) {
+    @PostMapping("/delete")
+    public RedirectView removePassword(@RequestParam(name="passwordId") Long id) {
         passRepo.deleteById(id);
 
-        return "account";
+        return new RedirectView("/account");
     }
 
     @GetMapping("/home")
