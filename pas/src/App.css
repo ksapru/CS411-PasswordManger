@@ -58,6 +58,11 @@ body {
   transition: 0.3s;
 }
 
+.add {
+  width: 20px;
+  height: 20px;
+}
+
 .cont1 {
   margin-bottom: 50px;
 }
