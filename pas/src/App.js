@@ -4,11 +4,15 @@ import { BiCheckDouble } from "react-icons/bi";
 import { AiFillEye } from "react-icons/ai";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { ImCross } from "react-icons/im";
+import { BiMessageSquareAdd } from "react-icons/bi";
+import { AiFillDelete } from "react-icons/ai";
 import { CgPassword } from "react-icons/cg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTimes, faCheck, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import React, { useState, showHide } from "react";
-import { Button } from 'react-bootstrap';
+import { Button, Alert } from 'react-bootstrap';
+import ReactDOM from 'react-dom';
+import Chip from '@mui/material/Chip';
 
 
 
@@ -73,19 +77,36 @@ export default function App() {
   const handleShowhide = () => {
     setShow(!show);
   };
+
+  
+
  
 
-  const showHide = () => {
 
+  const root = ReactDOM.createRoot(document.getElementById('root'));
 
-  };
+  function makeid() {
 
-  function makeid(length) {
-    var no = Math.random().toString(36).slice(-8); 
-    console.log(Math.random().toString(36).slice(-8));
+    const element = (
+      <div>
+      <h2>{Math.random().toString(36).slice(-8)}</h2>
+      <br/>
+      <Chip label="Add Password"  /> <BiMessageSquareAdd id="add" onClick={() => Math.random().toString(36).slice(-8)}></BiMessageSquareAdd>
+      <br/>
+      <br/>
+      <Chip label="Delete Password" /> <AiFillDelete id="add"></AiFillDelete>
+      
+
+      </div>
     
-  }
+    );
 
+    root.render(element);
+    console.log(element);
+    element.row_password.value = element;
+
+  }
+ 
   
 
  
@@ -93,7 +114,6 @@ export default function App() {
   return (
     <div className="App">
       <div className="cont1">
-        <input type="text" name = "" placeholder='Create Password' readonly=''></input>
         <br/>
         <Button onClick={()=>makeid()}> Generate Password</Button>
         </div>
