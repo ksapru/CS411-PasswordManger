@@ -22,13 +22,13 @@ public class IndexController {
 
     /* This is the route for when the user first enters the app */
     @GetMapping("/")
-    public String index(Model model) {
+    public String displayIndex(Model model) {
         return "index";
     }
 
 
     @GetMapping("/generate")
-    public String generate(Model model) {
+    public String addGeneratedPassword(Model model) {
         String password = getRandomPassword();
         model.addAttribute("GeneratedPassword",password);
         model.addAttribute("password",new Password());
@@ -51,7 +51,7 @@ public class IndexController {
     private PasswordRepository passRepo;
 
     @PostMapping("/home")
-    public String save(@RequestParam(name="username") String username,@RequestParam(name="password") String password) {
+    public String storePassword(@RequestParam(name="username") String username,@RequestParam(name="password") String password) {
         Password newPassword = new Password();
         newPassword.setAssociatedUserId(getLoggedInUser().getId());
         newPassword.setValue(password);
@@ -65,13 +65,9 @@ public class IndexController {
     @Autowired
     private UserRepository userRepo;
 
-    @Autowired
-    EntityManager entityManager;
-
-
     /* Route for the registration, the user is greeted with a form for their login info */
     @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
+    public String displayRegistrationForm(Model model) {
         model.addAttribute("user", new User());
 
         return "signup_form";
@@ -88,7 +84,7 @@ public class IndexController {
 
     //
     @GetMapping("/account")
-    public String listUsers(Model model) {
+    public String displayAccount(Model model) {
         List<Password> listPasswords = passRepo.findAll();
         listPasswords.removeIf(p -> p.getAssociatedUserId() != getLoggedInUser().getId());
         model.addAttribute("user", getLoggedInUser());
@@ -105,7 +101,7 @@ public class IndexController {
     }
 
     @GetMapping("/home")
-    public String home(Model model) {
+    public String displayHome(Model model) {
         model.addAttribute("GeneratedPassword","");
         model.addAttribute("password", new Password());
         return "home";
@@ -128,27 +124,5 @@ public class IndexController {
         loggedInUser.setEmail(email);
 
         return loggedInUser;
-    }
-
-    @GetMapping("/edit_account")
-    public String editAccountView(Model model) {
-        return "edit_account";
-    }
-
-    @PostMapping("/edit_account")
-    @ResponseBody
-    public RedirectView editAccountInfo(@RequestParam(name="email") String email) {
-
-
-        Long loggedInUserId = getLoggedInUser().getId();
-        User loggedInUser = getLoggedInUser();
-        loggedInUser.setEmail(email);
-
-        userRepo.updateUserInfo(loggedInUserId,email);
-
-        CustomUserDetails principal = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        principal.setUser(loggedInUser);
-
-        return new RedirectView("/account");
     }
 }
